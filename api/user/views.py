@@ -18,7 +18,7 @@ class UserViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['username',]
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get',])
     def user_by_token(self, request):
         queryset = Token.objects.all()
         token = get_object_or_404(queryset, key=request.query_params['token'])
