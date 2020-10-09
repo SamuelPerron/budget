@@ -17,8 +17,8 @@ def create_auth_token_and_profile(sender, instance=None, created=False, **kwargs
     if created:
         Token.objects.create(user=instance)
         Profile.objects.create(user=instance)
-        group = Group.objects.get(name='User')
-        instance.groups.add(group)
+        # group = Group.objects.get(name='User')
+        # instance.groups.add(group)
 
 
 @receiver(post_save, sender=get_user_model())

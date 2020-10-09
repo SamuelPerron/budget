@@ -6,7 +6,7 @@ from drf_writable_nested import WritableNestedModelSerializer
 class UserSerializer(WritableNestedModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ['pk', 'profile', 'username', 'email', 'is_staff', 'password',]
+        fields = ['pk', 'username', 'email', 'is_staff', 'password',]
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
