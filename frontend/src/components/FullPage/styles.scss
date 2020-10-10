@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+
+.close {
+    z-index: 2;
+    position: absolute;
+    left: 1vw;
+    top: 1vw;
+}
+
+.partial-background {
+    $top: 75vh;
+    background-color: $main-dark;
+    width: 100vw;
+    height: $top;
+
+    position: absolute;
+    top: 0;
+    z-index: 0;
+
+    &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 18vh solid $main-dark;
+        border-left: 100vw solid transparent;
+        position: absolute;
+        top: $top;
+    }
+}
+
+.full-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: $main-dark;
+
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}

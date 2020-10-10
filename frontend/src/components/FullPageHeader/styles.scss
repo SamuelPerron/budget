@@ -1,0 +1,15 @@
+@import '../../variables.scss';
+
+header {
+    width: 100vw;
+    height: 25vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    h1 {
+        font-size: 3rem;
+        color: $white;
+        z-index: 1;
+    }
+}

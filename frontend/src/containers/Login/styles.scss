@@ -1,0 +1,12 @@
+@import '../../variables.scss';
+
+.no-account {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 5rem;
+    transition: bottom $hover-time;
+
+    &:hover {
+        bottom: 3.5rem - $hover-move;
+    }
+}
