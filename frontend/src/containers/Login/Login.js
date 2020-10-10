@@ -4,15 +4,24 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import * as actionTypes from '../../store/actionTypes';
+import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
+import FullPageForm from '../../components/FullPageForm/FullPageForm';
+import FullPage from '../../components/FullPage/FullPage';
+import Button from '../../components/Button/Button';
 
-// import '../../styles/User/LoginRegister.scss';
+import './styles.scss';
 
 const Login = props => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [generalErrorMessage, setGeneralErrorMessage] = useState('');
-    const [usernameErrorMessage, setUsernameGeneralErrorMessage] = useState('');
-    const [passwordErrorMessage, setPasswordGeneralErrorMessage] = useState('');
+    const defaultMessages = {
+        username: '',
+        password: '',
+        general: '',
+    };
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+    });
+    const [errorMessages, setErrorMessages] = useState(defaultMessages);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -23,15 +32,13 @@ const Login = props => {
     }, []);
 
     const resetMessages = () => {
-        setGeneralErrorMessage('');
-        setUsernameGeneralErrorMessage('');
-        setPasswordGeneralErrorMessage('');
+        setErrorMessages(defaultMessages);
     }
 
     const authUser = () => {
         resetMessages();
 
-        axios.post(props.api + 'login/', { username, password })
+        axios.post(props.api + 'login/', { username: formData.username, password: formData.password })
         .then(r => {
             const token = r.data.token;
             props.onLoginSuccessful(token);
@@ -43,39 +50,41 @@ const Login = props => {
             for (var key in error) {
                 switch (key) {
                     case 'username':
-                            setUsernameGeneralErrorMessage(error[key]);
+                            setErrorMessages({username: error[key]});
                         break;
                     case 'password':
-                            setPasswordGeneralErrorMessage(error[key]);
+                            setErrorMessages({password: error[key]});
                         break;
                     default:
-                        setGeneralErrorMessage(error[key]);
+                        setErrorMessages({general: error[key]});
                 }
             }
         });
     }
 
     return (
-        <div className="Login">
-            <div className="login-form" data-aos="fade-up">
+        <FullPage background="partial" showClose={false}>
+            <FullPageHeader title="Login" />
+
+            <FullPageForm>
                 <div>
-                    <div>
-                        <span>Username</span>
-                        <input value={username} onChange={e => setUsername(e.target.value)} />
-                        <span className="error">{usernameErrorMessage}</span>
-                    </div>
-                    <div>
-                        <span>Password</span>
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <span className="error">{passwordErrorMessage}</span>
-                    </div>
-                    <div className="submit">
-                        <button onClick={authUser}>Sign in</button>
-                        <span className="error">{generalErrorMessage}</span>
-                    </div>
+                    <input value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} placeholder="Username" />
+                    <span className="error">{errorMessages.username}</span>
                 </div>
+                <div>
+                    <input type="password" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} placeholder="Password" />
+                    <span className="error">{errorMessages.password}</span>
+                </div>
+                <div>
+                    <Button label="Login" size="large" onClick={authUser} />
+                    <span className="error">{errorMessages.general}</span>
+                </div>
+            </FullPageForm>
+
+            <div className="no-account">
+                <Button label="Don't have an account ?" onClick={() => props.history.push('/register')} />
             </div>
-        </div>
+        </FullPage>
     );
 }
 

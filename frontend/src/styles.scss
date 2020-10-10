@@ -1,0 +1,13 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap');
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: $font;
+
+    background-color: $off-white;
+}

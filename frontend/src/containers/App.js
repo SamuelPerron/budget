@@ -10,6 +10,7 @@ import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import * as actionTypes from '../store/actionTypes';
 
+import './styles.scss';
 
 const App = props => {
     AOS.init()

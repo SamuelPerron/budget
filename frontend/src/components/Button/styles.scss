@@ -1,0 +1,41 @@
+@import '../../variables.scss';
+
+button {
+    background-color: #52796F;
+    border: none;
+    font-family: $font;
+    color: $off-white;
+    border-radius: $radius;
+    box-shadow: 0 3px 8px 0 #354F52;
+    transition: margin-top $hover-time;
+
+    font-size: 1.35rem;
+    padding: 0.7rem 1.4rem;
+
+    &.large {
+        padding: 0.8rem 1.7rem;
+        font-size: 1.7rem;
+        font-weight: bold;
+    }
+
+    &.small {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+
+    &.close {
+        $size: 3rem;
+
+        width: $size;
+        height: $size;
+        border-radius: $size;
+        font-size: $size - 1rem;
+        padding: 0;
+        padding-top: 3px;
+    }
+
+    &:hover {
+        margin-top: $hover-move;
+        cursor: pointer;
+    }
+}
