@@ -1,0 +1,14 @@
+@import '../../variables.scss';
+
+nav {
+    position: fixed;
+    background-color: $main-dark;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 5rem;
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

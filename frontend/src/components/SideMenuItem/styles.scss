@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.nav-item {
+    $size: 3rem;
+    height: $size;
+    width: $size;
+    border-radius: 100%;
+    border: 5px solid $main-pale;
+    transition: all .1s;
+    margin-bottom: 2rem;
+    font-size: $size - 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $main-pale;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $main-pale;
+        color: $main-dark;
+    }
+
+    &.active {
+        background-color: $main-pale;
+        color: $main-dark
+    }
+}
