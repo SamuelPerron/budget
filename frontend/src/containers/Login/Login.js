@@ -24,10 +24,12 @@ const Login = props => {
     const [errorMessages, setErrorMessages] = useState(defaultMessages);
 
     useEffect(() => {
+        // Logout if session is found
         const token = localStorage.getItem('token');
         if (token) {
             props.onLogoutSuccessful();
             localStorage.removeItem('token');
+            props.setMessage({type: 'success', body: 'Logout successfull !'});
         }
     }, []);
 
@@ -98,6 +100,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onLoginSuccessful: (token, user) => dispatch({type: actionTypes.SET_TOKEN, token, user}),
         onLogoutSuccessful: () => dispatch({type: actionTypes.UNSET_TOKEN}),
+        setMessage: message => dispatch({type: actionTypes.NEW_MESSAGE, message}),
     };
 };
 
