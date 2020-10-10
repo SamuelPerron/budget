@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+
+#message {
+    position: fixed;
+    width: 100vw;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    transition: top .5s;
+
+    height: 1rem;
+    text-align: center;
+    padding: 1rem 0;
+    color: $off-white;
+
+    &.success {
+        background-color: $main-pale;
+    }
+
+    &.info {
+        background-color: $main;
+    }
+
+    &.error {
+        background-color: $error;
+    }
+
+    &.close {
+        top: -3rem;
+    }
+}

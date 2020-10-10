@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import * as actionTypes from '../store/actionTypes';
+import Message from '../components/Message/Message';
 
 import './styles.scss';
 
@@ -44,6 +45,8 @@ const App = props => {
     return (
         <BrowserRouter basename="/">
             <div className="App">
+                <Message type="success" message="Your account has been successfully created ! You can now login."/>
+
                 <Switch>
                     <Route path="/register" component={Signup} />
                     <Route path="/login" component={Login} />
