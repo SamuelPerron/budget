@@ -1,8 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import * as actionTypes from '../../store/actionTypes';
 import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
 import FullPageForm from '../../components/FullPageForm/FullPageForm';
 import FullPage from '../../components/FullPage/FullPage';
@@ -51,9 +51,11 @@ const Signup = props => {
             })
             .then(r => {
                 resetFields();
-                setErrorMessages({success: 'User created, you can now login.'});
+                props.setMessage({type: 'success', body: 'User created, you can now login.'});
+                props.history.push('/login');
             })
             .catch(e => {
+                console.log(e);
                 const error = e.response.data;
                 for (var key in error) {
                     switch (key) {
@@ -121,10 +123,16 @@ const Signup = props => {
     );
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        setMessage: message => dispatch({type: actionTypes.NEW_MESSAGE, message}),
+    };
+};
+
 const mapStateToProps = state => {
     return {
         api: state.apiBaseURL,
     };
 };
 
-export default connect(mapStateToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -45,7 +45,7 @@ const App = props => {
     return (
         <BrowserRouter basename="/">
             <div className="App">
-                <Message type="success" message="Your account has been successfully created ! You can now login."/>
+                <Message type={props.message.type} message={props.message.body}/>
 
                 <Switch>
                     <Route path="/register" component={Signup} />
@@ -67,7 +67,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         api: state.apiBaseURL,
-        token: state.token
+        token: state.token,
+        message: state.message
     };
 };
 

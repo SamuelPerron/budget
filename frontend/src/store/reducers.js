@@ -5,6 +5,10 @@ const initialState = {
     apiBaseURL: API_BASE_URL,
     headers: {},
     token: null,
+    message: {
+        type: '',
+        body: '',
+    }
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,6 +34,17 @@ const reducer = (state = initialState, action) => {
                     Authorization: null
                 },
                 token: null,
+            }
+            return newState;
+            break;
+
+        case types.NEW_MESSAGE:
+            newState = {
+                ...state,
+                message: {
+                    type: action.message.type,
+                    body: action.message.body
+                }
             }
             return newState;
             break;
