@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -13,6 +13,14 @@ const Login = props => {
     const [generalErrorMessage, setGeneralErrorMessage] = useState('');
     const [usernameErrorMessage, setUsernameGeneralErrorMessage] = useState('');
     const [passwordErrorMessage, setPasswordGeneralErrorMessage] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token != undefined || token != '') {
+            props.onLogoutSuccessful();
+            localStorage.setItem('token', undefined);
+        }
+    }, []);
 
     const resetMessages = () => {
         setGeneralErrorMessage('');
@@ -80,6 +88,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLoginSuccessful: (token, user) => dispatch({type: actionTypes.SET_TOKEN, token, user}),
+        onLogoutSuccessful: () => dispatch({type: actionTypes.UNSET_TOKEN}),
     };
 };
 
