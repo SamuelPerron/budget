@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import * as actionTypes from '../../store/actionTypes';
-import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
 import FullPageForm from '../../components/FullPageForm/FullPageForm';
 import FullPage from '../../components/FullPage/FullPage';
 import Button from '../../components/Button/Button';
@@ -65,9 +64,7 @@ const Login = props => {
     }
 
     return (
-        <FullPage background="partial" showClose={false}>
-            <FullPageHeader title="Login" />
-
+        <FullPage background="partial" showClose={false} title="Login">
             <FullPageForm>
                 <div>
                     <input value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} placeholder="Username" />

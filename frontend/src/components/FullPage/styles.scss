@@ -1,5 +1,11 @@
 @import '../../variables.scss';
 
+.full-page {
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+}
+
 .close {
     z-index: 2;
     position: absolute;

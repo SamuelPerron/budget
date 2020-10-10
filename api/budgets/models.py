@@ -34,6 +34,7 @@ class BudgetItem(models.Model):
         (SAVING, 'Saving'),
     )
 
+    budget = models.ForeignKey('budgets.Budget', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     type = models.CharField(max_length=6, blank=False, null=False, choices=TYPES)
     value = models.FloatField(blank=False, null=False, default=0)

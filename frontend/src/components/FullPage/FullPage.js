@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '../../components/Button/Button';
+import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
 
 import './styles.scss';
 
@@ -13,6 +14,7 @@ const FullPage = props => {
 
     return (
         <div className="full-page">
+            <FullPageHeader title={props.title} />
             <div className={backgroundClass} />
 
             { props.showClose ?

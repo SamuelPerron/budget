@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 
 .nav-item {
-    $size: 3rem;
+    $size: $side-menu-width - 2rem;
     height: $size;
     width: $size;
     border-radius: 100%;

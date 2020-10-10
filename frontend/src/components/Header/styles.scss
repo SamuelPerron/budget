@@ -1,0 +1,12 @@
+@import '../../variables.scss';
+
+.header {
+    height: 25vh;
+
+    h1 {
+        font-size: 3rem;
+        color: $text;
+        z-index: 1;
+        margin-top: 0;
+    }
+}

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 import * as actionTypes from '../../store/actionTypes';
-import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
 import FullPageForm from '../../components/FullPageForm/FullPageForm';
 import FullPage from '../../components/FullPage/FullPage';
 import Button from '../../components/Button/Button';
@@ -81,9 +80,7 @@ const Signup = props => {
 
     return (
         <RedirectIfSession>
-            <FullPage background="full" showClose={true} history={props.history}>
-                <FullPageHeader title="Create new account" />
-
+            <FullPage background="full" showClose={true} history={props.history} title="Create new account">
                 <FullPageForm>
                     <div>
                         <input
