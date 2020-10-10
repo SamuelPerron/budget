@@ -6,16 +6,19 @@ const Button = props => {
 
     switch (props.size) {
         case 'large':
-            classes = classes + 'large';
+            classes = classes + ' large';
             break;
         case 'small':
-            classes = classes + 'small';
+            classes = classes + ' small';
             break;
     }
 
     switch (props.type) {
         case 'close':
-            classes = classes + 'close';
+            classes = classes + ' close';
+            break;
+        case 'text':
+            classes = classes + ' text';
             break;
     }
 

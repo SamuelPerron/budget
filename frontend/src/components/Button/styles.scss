@@ -1,12 +1,12 @@
 @import '../../variables.scss';
 
 button {
-    background-color: #52796F;
+    background-color: $main;
     border: none;
     font-family: $font;
     color: $off-white;
     border-radius: $radius;
-    box-shadow: 0 3px 8px 0 #354F52;
+    box-shadow: 0 3px 8px 0 $main-dark;
     transition: margin-top $hover-time;
 
     font-size: 1.35rem;
@@ -21,6 +21,13 @@ button {
     &.small {
         padding: 0.5rem 1rem;
         font-size: 1rem;
+    }
+
+    &.text {
+        background: none;
+        color: $text;
+        box-shadow: none;
+        padding: none !important;
     }
 
     &.close {

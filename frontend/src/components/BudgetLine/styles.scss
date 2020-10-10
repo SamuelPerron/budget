@@ -1,0 +1,58 @@
+@import '../../variables.scss';
+
+.budget-line {
+    width: 100%;
+    background-color: $grey;
+    height: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    div {
+        height: 5px;
+        border-radius: 10px;
+        text-align: center;
+        margin-left: -1px;
+
+        span {
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        &.wants {
+            color: $want;
+            z-index: 998;
+
+            div {
+                background-color: $want;
+            }
+        }
+
+        &.needs {
+            color: $need;
+            z-index: 999;
+
+            div {
+                background-color: $need;
+            }
+        }
+
+        &.savings {
+            color: $saving;
+            z-index: 997;
+
+            div {
+                background-color: $saving;
+            }
+        }
+
+        &.used {
+            color: $main;
+
+            div {
+                background-color: $main;
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.budget-item {
+    margin-bottom: 2rem;
+    width: 70vw;
+    color: $text;
+
+    .budget-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+
+        h2 {
+            margin: 0;
+        }
+
+        span {
+            display: block;
+        }
+    }
+}

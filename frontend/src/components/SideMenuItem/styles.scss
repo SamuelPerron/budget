@@ -1,14 +1,14 @@
 @import '../../variables.scss';
 
 .nav-item {
-    $size: $side-menu-width - 2rem;
+    $size: $side-menu-width - 2vw;
     height: $size;
     width: $size;
     border-radius: 100%;
     border: 5px solid $main-pale;
     transition: all .1s;
     margin-bottom: 2rem;
-    font-size: $size - 1.5rem;
+    font-size: $size - 0.9vw;
     display: flex;
     justify-content: center;
     align-items: center;

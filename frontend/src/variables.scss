@@ -8,10 +8,15 @@ $main: #52796F;
 $grey: #E0E0E0;
 $error: #B92B27;
 
+$saving: $main;
+$want: $main-dark;
+$need: $main-pale;
+
 $font: 'Comfortaa', 'sans-serif';
 $radius: 10px;
 $hover-move: -0.2rem;
 $hover-time: 0.2s;
-$side-menu-width: 5rem;
-$side-padding: 3rem;
+$side-menu-width: 4vw;
+$side-padding: 3vw;
 $top-padding: 3rem;
+$page-full-width: 100vw - $side-padding - $side-menu-width;
