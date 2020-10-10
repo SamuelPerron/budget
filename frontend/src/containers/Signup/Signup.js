@@ -81,7 +81,7 @@ const Signup = props => {
 
     return (
         <RedirectIfSession>
-            <FullPage background="full" showClose={true}>
+            <FullPage background="full" showClose={true} history={props.history}>
                 <FullPageHeader title="Create new account" />
 
                 <FullPageForm>
