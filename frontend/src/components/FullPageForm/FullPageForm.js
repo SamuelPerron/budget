@@ -6,7 +6,7 @@ const FullPageForm = props => {
 
     return (
         <div className="form" data-aos="fade-up">
-            <div className="elements">
+            <div className="items">
                 {props.children}
             </div>
         </div>

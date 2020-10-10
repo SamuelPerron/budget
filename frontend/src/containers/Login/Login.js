@@ -25,9 +25,9 @@ const Login = props => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token != undefined || token != '') {
+        if (token) {
             props.onLogoutSuccessful();
-            localStorage.setItem('token', undefined);
+            localStorage.removeItem('token');
         }
     }, []);
 
