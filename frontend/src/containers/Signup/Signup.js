@@ -3,41 +3,45 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-// import '../../styles/User/LoginRegister.scss';
+import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
+import FullPageForm from '../../components/FullPageForm/FullPageForm';
+import FullPage from '../../components/FullPage/FullPage';
+import Button from '../../components/Button/Button';
 
 const Signup = props => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-    const [generalErrorMessage, setGeneralErrorMessage] = useState('');
-    const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
-    const [emailErrorMessage, setEmailErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
+    const defaultMessages = {
+        username: '',
+        email: '',
+        password: '',
+        repearPassword: '',
+        general: '',
+        successMessage: '',
+    };
+    const defaultFields = {
+        username: '',
+        email: '',
+        password: '',
+        repearPassword: '',
+    };
+    const [formData, setFormData] = useState(defaultFields);
+    const [errorMessages, setErrorMessages] = useState(defaultMessages);
 
     const resetMessages = () => {
-        setGeneralErrorMessage('');
-        setUsernameErrorMessage('');
-        setPasswordErrorMessage('');
-        setEmailErrorMessage('');
+        setErrorMessages(defaultMessages);
     }
 
     const resetFields = () => {
-        setUsername('');
-        setEmail('');
-        setPassword('');
-        setRepeatPassword('');
+        setFormData(defaultFields);
     }
 
     const registerUser = () => {
         resetMessages();
 
-        if (password === repeatPassword) {
+        if (formData.password === formData.repeatPassword) {
             const data = new FormData();
-            data.append('username', username);
-            data.append('password', password);
-            data.append('email', email);
+            data.append('username', formData.username);
+            data.append('password', formData.password);
+            data.append('email', formData.email);
 
             axios({
                 url: props.api + 'users/',
@@ -47,62 +51,73 @@ const Signup = props => {
             })
             .then(r => {
                 resetFields();
-                setSuccessMessage('User created, you can now login.');
+                setErrorMessages({success: 'User created, you can now login.'});
             })
             .catch(e => {
                 const error = e.response.data;
                 for (var key in error) {
                     switch (key) {
                         case 'username':
-                                setUsernameErrorMessage(error[key]);
+                                setErrorMessages({username: error[key]});
                             break;
                         case 'password':
-                                setPasswordErrorMessage(error[key]);
+                                setErrorMessages({password: error[key]});
                             break;
                         case 'email':
-                                setEmailErrorMessage(error[key]);
+                                setErrorMessages({email: error[key]});
                             break;
                         default:
-                            setGeneralErrorMessage(error[key]);
+                            setErrorMessages({general: error[key]});
                     }
                 }
             });
         } else {
-            setPasswordErrorMessage('Passwords don\'t match');
+            setErrorMessages({repeatPassword: 'Passwords don\'t match'});
         }
     }
 
     return (
-        <div className="Signup">
-            <div className="register-form" data-aos="fade-up">
+        <FullPage background="full" showClose={true}>
+            <FullPageHeader title="Create new account" />
+
+            <FullPageForm>
                 <div>
-                    <div>
-                        <span>Username</span>
-                        <input value={username} onChange={e => setUsername(e.target.value)} />
-                        <span className="error">{usernameErrorMessage}</span>
-                    </div>
-                    <div>
-                        <span>Password</span>
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-                        <span className="error">{passwordErrorMessage}</span>
-                    </div>
-                    <div>
-                        <span>Repeat password</span>
-                        <input type="password" value={repeatPassword} onChange={e => setRepeatPassword(e.target.value)} />
-                    </div>
-                    <div>
-                        <span>Email</span>
-                        <input value={email} onChange={e => setEmail(e.target.value)} />
-                        <span className="error">{emailErrorMessage}</span>
-                    </div>
-                    <div className="submit">
-                        <button onClick={registerUser}>Sign up</button>
-                        <span className="error">{generalErrorMessage}</span>
-                        <span className="error">{successMessage}</span>
-                    </div>
+                    <input
+                        value={formData.username}
+                        onChange={e => setFormData({...formData, username: e.target.value})}
+                        placeholder="Username" />
+                    <span className="error">{errorMessages.username}</span>
                 </div>
-            </div>
-        </div>
+                <div>
+                    <input
+                        value={formData.email}
+                        onChange={e => setFormData({...formData, email: e.target.value})}
+                        placeholder="Email" />
+                    <span className="error">{errorMessages.email}</span>
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        value={formData.password}
+                        onChange={e => setFormData({...formData, password: e.target.value})}
+                        placeholder="Password" />
+                    <span className="error">{errorMessages.password}</span>
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        value={formData.repeatPassword}
+                        onChange={e => setFormData({...formData, repeatPassword: e.target.value})}
+                        placeholder="Repeat password" />
+                    <span className="error">{errorMessages.repeatPassword}</span>
+                </div>
+                <div>
+                    <Button label="Register" onClick={registerUser} />
+                    <span className="error">{errorMessages.general}</span>
+                    <span className="error">{errorMessages.success}</span>
+                </div>
+            </FullPageForm>
+        </FullPage>
     );
 }
 

@@ -4,6 +4,8 @@ from drf_writable_nested import WritableNestedModelSerializer
 
 
 class UserSerializer(WritableNestedModelSerializer):
+    email = serializers.CharField(required=True)
+
     class Meta:
         model = get_user_model()
         fields = ['pk', 'username', 'email', 'is_staff', 'password',]
