@@ -7,6 +7,7 @@ import FullPageHeader from '../../components/FullPageHeader/FullPageHeader';
 import FullPageForm from '../../components/FullPageForm/FullPageForm';
 import FullPage from '../../components/FullPage/FullPage';
 import Button from '../../components/Button/Button';
+import RedirectIfSession from '../../components/RedirectIfSession/RedirectIfSession';
 
 const Signup = props => {
     const defaultMessages = {
@@ -79,47 +80,49 @@ const Signup = props => {
     }
 
     return (
-        <FullPage background="full" showClose={true}>
-            <FullPageHeader title="Create new account" />
+        <RedirectIfSession>
+            <FullPage background="full" showClose={true}>
+                <FullPageHeader title="Create new account" />
 
-            <FullPageForm>
-                <div>
-                    <input
-                        value={formData.username}
-                        onChange={e => setFormData({...formData, username: e.target.value})}
-                        placeholder="Username" />
-                    <span className="error">{errorMessages.username}</span>
-                </div>
-                <div>
-                    <input
-                        value={formData.email}
-                        onChange={e => setFormData({...formData, email: e.target.value})}
-                        placeholder="Email" />
-                    <span className="error">{errorMessages.email}</span>
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        value={formData.password}
-                        onChange={e => setFormData({...formData, password: e.target.value})}
-                        placeholder="Password" />
-                    <span className="error">{errorMessages.password}</span>
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        value={formData.repeatPassword}
-                        onChange={e => setFormData({...formData, repeatPassword: e.target.value})}
-                        placeholder="Repeat password" />
-                    <span className="error">{errorMessages.repeatPassword}</span>
-                </div>
-                <div>
-                    <Button label="Register" onClick={registerUser} />
-                    <span className="error">{errorMessages.general}</span>
-                    <span className="error">{errorMessages.success}</span>
-                </div>
-            </FullPageForm>
-        </FullPage>
+                <FullPageForm>
+                    <div>
+                        <input
+                            value={formData.username}
+                            onChange={e => setFormData({...formData, username: e.target.value})}
+                            placeholder="Username" />
+                        <span className="error">{errorMessages.username}</span>
+                    </div>
+                    <div>
+                        <input
+                            value={formData.email}
+                            onChange={e => setFormData({...formData, email: e.target.value})}
+                            placeholder="Email" />
+                        <span className="error">{errorMessages.email}</span>
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            value={formData.password}
+                            onChange={e => setFormData({...formData, password: e.target.value})}
+                            placeholder="Password" />
+                        <span className="error">{errorMessages.password}</span>
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            value={formData.repeatPassword}
+                            onChange={e => setFormData({...formData, repeatPassword: e.target.value})}
+                            placeholder="Repeat password" />
+                        <span className="error">{errorMessages.repeatPassword}</span>
+                    </div>
+                    <div>
+                        <Button label="Register" onClick={registerUser} />
+                        <span className="error">{errorMessages.general}</span>
+                        <span className="error">{errorMessages.success}</span>
+                    </div>
+                </FullPageForm>
+            </FullPage>
+        </RedirectIfSession>
     );
 }
 
