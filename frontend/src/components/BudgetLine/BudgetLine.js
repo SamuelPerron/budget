@@ -4,7 +4,7 @@ import './styles.scss';
 const BudgetLine = props => {
     return (
         <div className="budget-line">
-            { props.items.map(item => {
+            { props.proportions.map(item => {
                 let style = '';
                 switch (item.name) {
                     case 'Wants':
